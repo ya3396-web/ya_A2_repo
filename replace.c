@@ -17,40 +17,39 @@
    assumptions about the maximum number of replacements or the
    maximum number of characters in strings pcLine, pcFrom, or pcTo. */
 
-static size_t replaceAndWrite(const char *pcLine,
+static size_t replaceAndWrite(const char *pcLine,  
                               const char *pcFrom, const char *pcTo)
 {
    /* Insert your code here. */
-   char *replacedLine;
    char *tempPrint;
    char *tempFind;
    size_t fromSize;
    size_t totalReplacements;
 
-   Str_copy(replacedLine, pcLine);
+
    fromSize = Str_getlength(pcFrom);
    if (fromSize == 0) {
-      printf("%s", replacedLine);
+      printf("%s", pcLine);
       return 0;
    }
 
    totalReplacements = 0;
-   tempPrint = replacedLine;
+   tempPrint = pcLine;
    while (*tempPrint != '\0') {
       tempFind = Str_search(tempPrint, pcFrom);
-      if (*tempFind == NULL) {
+      if (tempFind == NULL) {
          printf("%s", tempPrint);
          return totalReplacements;
       }
 
       totalReplacements++;
       while (tempPrint != tempFind) {
-         printf("%d", *tempPrint);
+         putchar(*tempPrint);
          tempPrint++;
       }
 
       printf("%s", pcTo);
-      tempPrint += Str_getlength(pcFrom);
+      tempPrint += fromSize;
    }
 
    return totalReplacements;
@@ -76,7 +75,9 @@ int main(int argc, char *argv[])
 
    char acLine[MAX_LINE_SIZE];
    char *pcFrom;
+   size_t pcFromCapacity;
    char *pcTo;
+   size_t pcToCapacity;
    size_t uReplaceCount = 0;
 
    if (argc != PROPER_ARG_COUNT)
@@ -86,10 +87,13 @@ int main(int argc, char *argv[])
    }
 
    pcFrom = argv[1];
+   pcFromCapacity = sizeof(argv[1]);
    pcTo = argv[2];
+   pcToCapacity = sizeof(argv[2]);
 
    while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL)
-      uReplaceCount = replaceAndWrite(acLine, pcFrom, pcTo);
+      uReplaceCount += replaceAndWrite(acLine, MAX_LINE_SIZE, 
+                        pcFromCapacity, pcToCapacity, pcFrom, pcTo);
 
    fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
    return 0;
