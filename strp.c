@@ -8,7 +8,7 @@ for implementation and str.h as a blueprint */
 /* Returns how many characters are in the given string 
 (excludes '\0'). Takes an array or pointer as input and 
 returns a size_t value.*/
-size_t Str_getLength(int str[]){
+size_t Str_getLength(const char str[]){
     const char *current;
     int j;
 
@@ -27,10 +27,10 @@ size_t Str_getLength(int str[]){
 /* Copies the characters in the second argument into the first.
 Takes two strings as arguments and returns a pointer 
 that points at the first element of the copied string.*/
-int *Str_copy(int str1[], int str2[]) {
+char *Str_copy(char str1[], const char str2[]) {
 
-    int *current;
-    int *copy;
+    const char *current;
+    char *copy;
     size_t sizeStr2;
 
     assert (str1 != NULL);
@@ -57,11 +57,11 @@ int *Str_copy(int str1[], int str2[]) {
 /* Grafts the characters of the second argument onto the end of
 first argument. Takes two strings as arguments, and returns a 
 pointer to the first element of the final array.*/
-int *Str_concat(int str1[], int str2[]) {
+char *Str_concat(char str1[], const char str2[]) {
     size_t size1;
     size_t size2;
-    int *current;
-    int *cat;
+    char *current;
+    const char *cat;
 
     assert (str1 != NULL);
     assert (str2 != NULL);
@@ -87,9 +87,9 @@ int *Str_concat(int str1[], int str2[]) {
 two strings as input. Returns 1 if str1 is more than str2, 
 returns -1 if str1 is less than str2, and 0 if they're equal.
 */
-int Str_compare(int str1[], int str2[]) {
-    int *compare1;
-    int *compare2;
+int Str_compare(const str1[], const str2[]) {
+    const char *compare1;
+    const char *compare2;
 
     assert (str1 != NULL);
     assert (str2 != NULL);
@@ -127,10 +127,10 @@ int Str_compare(int str1[], int str2[]) {
 /* Searches the first string and checks if it contains the 
 second string. Takes two strings as input and returns a pointer
 that points to the first element of the substring, and NULL otherwise*/
-int *Str_search(char string[], char substring[]) {
-    int *stringPos; /* the pointer that we're returning*/
-    int *subTemp;
-    int *temp;
+char *Str_search(const char string[], const char substring[]) {
+    const char *stringPos; /* the pointer that we're returning*/
+    const char *subTemp;
+    const char *temp;
     size_t position;
     size_t substringSize;
     size_t stringSize;
