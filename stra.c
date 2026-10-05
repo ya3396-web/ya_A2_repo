@@ -8,7 +8,7 @@ for implementation and str.h as a blueprint */
 /* Returns how many characters are in the given string 
 (excludes '\0'). Takes an array or pointer as input and 
 returns a size_t value.*/
-size_t Str_getlength(const char str[]){
+size_t Str_getLength(int str[]){
     size_t i;
     size_t j;
 
@@ -26,16 +26,12 @@ size_t Str_getlength(const char str[]){
 /* Copies the characters in the second argument into the first.
 Takes two strings as arguments and returns a pointer 
 that points at the first element of the copied string.*/
-char *Str_copy(char str1[], size_t capacityStr1, const char str2[]) {
+int *Str_copy(int str1[], int str2[]) {
     size_t i;
     size_t size2;
 
     assert(str1 != NULL);
     assert(str2 != NULL);
-
-    /* making sure that str1 has enough space for str2 and '\0' */
-    size2 = Str_getlength(str2);
-    assert(size2 < capacityStr1);
     
     for (i = 0; ; i++) {
         str1[i] = str2[i];
@@ -49,7 +45,7 @@ char *Str_copy(char str1[], size_t capacityStr1, const char str2[]) {
 /* Grafts the characters of the second argument onto the end of
 first argument. Takes two strings as arguments, and returns a 
 pointer to the first element of the final array.*/
-char *Str_concat(char str1[], size_t capacityStr1, const char str2[]) {
+int *Str_concat(int str1[], int str2[]) {
     size_t i;
     size_t size2;
     size_t size1;
@@ -59,10 +55,6 @@ char *Str_concat(char str1[], size_t capacityStr1, const char str2[]) {
 
     size1 = Str_getlength(str1);
     size2 = Str_getlength(str2);
-
-    /* we would be accessing memory that is not in the array so
-    we need to check if str1 has enough space for str2 */
-    assert(size2 < capacityStr1 - size1);
 
     for (i = 0; str2[i] != '\0'; i++) {
         str1[i + size1] = str2[i];
@@ -77,7 +69,7 @@ char *Str_concat(char str1[], size_t capacityStr1, const char str2[]) {
 two strings as input. Returns 1 if str1 is more than str2, 
 returns -1 if str1 is less than str2, and 0 if they're equal.
 */
-int Str_compare(const char str1[], const char str2[]) {
+int Str_compare(int str1[], int str2[]) {
     size_t i;
 
     assert (str1 != NULL);
@@ -103,7 +95,7 @@ int Str_compare(const char str1[], const char str2[]) {
 /* Searches the first string and checks if it contains the 
 second string. Takes two strings as input and returns a pointer
 that points to the first element of the substring, and NULL otherwise*/
-char *Str_search(char string[], const char substring[]) {
+int *Str_search(int string[], int substring[]) {
     size_t i;
     size_t j;
     size_t size1;
@@ -142,5 +134,9 @@ char *Str_search(char string[], const char substring[]) {
     /* Returning NULL means we didn't find the substring in 
     the main string*/
     return NULL;
+}
+
+int main(void) {
+
 }
 
