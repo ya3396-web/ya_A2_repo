@@ -28,7 +28,6 @@ Takes two strings as arguments and returns a pointer
 that points at the first element of the copied string.*/
 char *Str_copy(char str1[], const char str2[]) {
     size_t i;
-    size_t size2;
 
     assert(str1 != NULL);
     assert(str2 != NULL);
@@ -53,8 +52,8 @@ char *Str_concat(char str1[], const char str2[]) {
     assert (str1 != NULL);
     assert (str2 != NULL);
 
-    size1 = Str_getlength(str1);
-    size2 = Str_getlength(str2);
+    size1 = Str_getLength(str1);
+    size2 = Str_getLength(str2);
 
     for (i = 0; str2[i] != '\0'; i++) {
         str1[i + size1] = str2[i];
