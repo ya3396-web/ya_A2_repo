@@ -1,3 +1,6 @@
+/* stra.c ---- Author: Yoftahe Abate
+Implementation of the standard C library using arrays
+for implementation and str.h as a blueprint */
 #include "str.h"
 #include <assert.h>
 #include <stddef.h>

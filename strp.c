@@ -1,3 +1,6 @@
+/* strp.c ----- Author: Yoftahe Abate
+Implementation of the standard C library using pointers
+for implementation and str.h as a blueprint */
 #include "str.h"
 #include <stddef.h>
 #include <assert.h>
