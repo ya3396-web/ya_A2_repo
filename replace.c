@@ -30,7 +30,7 @@ static size_t replaceAndWrite(const char *pcLine,
    assert (pcTo != NULL);
 
    /* returns 0 because fromSize is empty */
-   fromSize = Str_getlength(pcFrom);
+   fromSize = Str_getLength(pcFrom);
    if (fromSize == 0) {
       printf("%s", pcLine);
       return 0;
@@ -91,9 +91,7 @@ int main(int argc, char *argv[])
 
    char acLine[MAX_LINE_SIZE];
    char *pcFrom;
-   size_t pcFromCapacity;
    char *pcTo;
-   size_t pcToCapacity;
    size_t uReplaceCount = 0;
 
    if (argc != PROPER_ARG_COUNT)
