@@ -25,6 +25,10 @@ static size_t replaceAndWrite(const char *pcLine,
    size_t fromSize;
    size_t totalReplacements;
 
+   assert (pcLine != NULL);
+   assert (pcFrom != NULL);
+   assert (pcTo != NULL);
+
    /* returns 0 because fromSize is empty */
    fromSize = Str_getlength(pcFrom);
    if (fromSize == 0) {
