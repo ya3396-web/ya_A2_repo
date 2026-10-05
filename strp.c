@@ -10,7 +10,7 @@ for implementation and str.h as a blueprint */
 returns a size_t value.*/
 size_t Str_getLength(const char str[]){
     const char *current;
-    int j;
+    size_t j;
 
     assert(str != NULL);
 
