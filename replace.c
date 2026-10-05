@@ -20,8 +20,8 @@
 static size_t replaceAndWrite(const char *pcLine,  
                               const char *pcFrom, const char *pcTo)
 {
-   char *tempPrint;
-   char *tempFind;
+   const char *tempPrint;
+   const char *tempFind;
    size_t fromSize;
    size_t totalReplacements;
 
@@ -103,13 +103,11 @@ int main(int argc, char *argv[])
    }
 
    pcFrom = argv[1];
-   pcFromCapacity = sizeof(argv[1]);
    pcTo = argv[2];
-   pcToCapacity = sizeof(argv[2]);
 
    while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL)
-      uReplaceCount += replaceAndWrite(acLine, MAX_LINE_SIZE, 
-                        pcFromCapacity, pcToCapacity, pcFrom, pcTo);
+      uReplaceCount += replaceAndWrite(acLine, (const char *) pcFrom, 
+                                       (const char*) pcTo);
 
    fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
    return 0;
