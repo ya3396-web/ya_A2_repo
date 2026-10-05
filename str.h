@@ -1,5 +1,4 @@
 #include <stddef.h>
-#include "str.h"
 #include <assert.h>
 #ifndef STR_H
 #define STR_H
