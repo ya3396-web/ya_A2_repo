@@ -127,7 +127,7 @@ int Str_compare(const str1[], const str2[]) {
 /* Searches the first string and checks if it contains the 
 second string. Takes two strings as input and returns a pointer
 that points to the first element of the substring, and NULL otherwise*/
-char *Str_search(const char string[], const char substring[]) {
+const char *Str_search(const char string[], const char substring[]) {
     const char *stringPos; /* the pointer that we're returning*/
     const char *subTemp;
     const char *temp;
@@ -138,8 +138,8 @@ char *Str_search(const char string[], const char substring[]) {
     assert (string != NULL);
     assert (substring != NULL);
 
-    substringSize = Str_getlength(substring);
-    stringSize = Str_getlength(string);
+    substringSize = Str_getLength(substring);
+    stringSize = Str_getLength(string);
 
 
     if (substringSize == 0) 
@@ -171,8 +171,4 @@ char *Str_search(const char string[], const char substring[]) {
     /* Returning NULL means we didn't find the substring in 
     the main string*/
     return NULL;
-}
-
-int main(void) {
-
 }
