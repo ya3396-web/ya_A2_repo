@@ -136,6 +136,6 @@ const char *Str_search(const char string[], const char substring[]) {
 }
 
 int main(void) {
-
+    return 0;
 }
 
