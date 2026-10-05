@@ -94,7 +94,7 @@ int Str_compare(const char str1[], const char str2[]) {
 /* Searches the first string and checks if it contains the 
 second string. Takes two strings as input and returns a pointer
 that points to the first element of the substring, and NULL otherwise*/
-char *Str_search(const char string[], const char substring[]) {
+const char *Str_search(const char string[], const char substring[]) {
     size_t i;
     size_t j;
     size_t size1;
