@@ -35,11 +35,6 @@ char *Str_copy(char str1[], const char str2[]) {
 
     assert (str1 != NULL);
     assert (str2 != NULL);
-
-    /* making sure that str1 has at least one more byte capacity
-    than getlength(str2) for the '\0' character */
-    sizeStr2 = Str_getlength(str2);
-    assert (sizeStr2 < capacityStr1);
     
     copy = str1;
     current = str2;
@@ -87,7 +82,7 @@ char *Str_concat(char str1[], const char str2[]) {
 two strings as input. Returns 1 if str1 is more than str2, 
 returns -1 if str1 is less than str2, and 0 if they're equal.
 */
-int Str_compare(const str1[], const str2[]) {
+int Str_compare(const char str1[], const char str2[]) {
     const char *compare1;
     const char *compare2;
 
@@ -140,7 +135,6 @@ const char *Str_search(const char string[], const char substring[]) {
 
     substringSize = Str_getLength(substring);
     stringSize = Str_getLength(string);
-
 
     if (substringSize == 0) 
         return string;
