@@ -135,7 +135,4 @@ const char *Str_search(const char string[], const char substring[]) {
     return NULL;
 }
 
-int main(void) {
-    return 0;
-}
 
