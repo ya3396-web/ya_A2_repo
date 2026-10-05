@@ -103,8 +103,8 @@ char *Str_search(const char string[], const char substring[]) {
     assert(string != NULL);
     assert(substring != NULL);
 
-    size1 = Str_getlength(string);
-    size2 = Str_getlength(substring);
+    size1 = Str_getLength(string);
+    size2 = Str_getLength(substring);
 
     /* returning the string if str2 is just the '\0' character*/
     if (size2 == 0)
