@@ -30,6 +30,7 @@ char *Str_copy(char str1[], size_t capacityStr1, const char str2[]) {
     assert(str1 != NULL);
     assert(str2 != NULL);
 
+    /* making sure that str1 has enough space for str2 and '\0' */
     size2 = Str_getlength(str2);
     assert(size2 < capacityStr1);
     
@@ -56,12 +57,15 @@ char *Str_concat(char str1[], size_t capacityStr1, const char str2[]) {
     size1 = Str_getlength(str1);
     size2 = Str_getlength(str2);
 
+    /* we would be accessing memory that is not in the array so
+    we need to check if str1 has enough space for str2 */
     assert(size2 < capacityStr1 - size1);
 
     for (i = 0; str2[i] != '\0'; i++) {
         str1[i + size1] = str2[i];
     }
 
+    /* making sure that the final string ends with '\0' */
     str1[size1 + size2] = '\0';
     return str1;
 }
@@ -76,15 +80,20 @@ int Str_compare(const char str1[], const char str2[]) {
     assert (str1 != NULL);
     assert (str2 != NULL);
 
+    /* going character by character and checking equality */
     for (i = 0; (str1[i] != '\0') && (str2[i] != '\0'); i++) {
         if (str1[i] < str2[i]) return -1;
         else if (str1[i] > str2[i]) return 1;
         else continue;
     }
 
+    /* one string could be longer than the other so here
+    we're checking if they're the same length */
     if ((str1[i] == '\0') && (str2[i] == '\0'))
         return 0;
     
+    /* otherwise, one of them has ended, and we return 1 or -1 
+    for the shorter one */
     return str1[i] < str2[i] ? -1 : 1;
 }
 
@@ -103,22 +112,32 @@ char *Str_search(char string[], const char substring[]) {
     size1 = Str_getlength(string);
     size2 = Str_getlength(substring);
 
+    /* returning the string if str2 is just the '\0' character*/
     if (size2 == 0)
         return string;
 
+    /* it doesn't make sense if the substring is bigger than
+    the main string */
     if (size2 > size1)
         return NULL;
 
+    /* going character by character until we either get an inequality
+    or the substring pointer reaches the end*/
     for (i = 0; i <= size1 - size2; i++) {
         for (j = 0; j < size2; j++) {
             if (string[i + j] != substring[j])
                 break;
         }
 
+        /* the substring pointer reaching the end means that we have
+        found the substring in the main string so we return the pointer
+        at that position */
         if (j == size2)
             return &string[i];
     }
 
+    /* Returning NULL means we didn't find the substring in 
+    the main string*/
     return NULL;
 }
 

@@ -33,6 +33,8 @@ char *Str_copy(char str1[], size_t capacityStr1, const char str2[]) {
     assert (str1 != NULL);
     assert (str2 != NULL);
 
+    /* making sure that str1 has at least one more byte capacity
+    than getlength(str2) for the '\0' character */
     sizeStr2 = Str_getlength(str2);
     assert (sizeStr2 < capacityStr1);
     
@@ -61,15 +63,18 @@ char *Str_concat(char str1[], size_t capacityStr1, const char str2[]) {
     assert (str1 != NULL);
     assert (str2 != NULL);
 
+    /* Making sure that str1 has enough space for str2*/
     size1 = Str_getlength(str1);
     size2 = Str_getlength(str2);
     assert(capacityStr1 > size1);
     assert(size2 < capacityStr1 - size1);
 
+    /* getting to the end of str1 */
     current = str1;
     while (*current != '\0') current++;
 
-
+    /* start by replacing the end of str1 with str2, going until the
+    '\0' character at the end of str2*/
     for (cat = str2; ; cat++) {
         *current = *cat;
         current++;
@@ -92,9 +97,13 @@ int Str_compare(const char str1[], const char str2[]) {
     assert (str1 != NULL);
     assert (str2 != NULL);
 
+    /* Starting at the beginning of each string and going
+    character by character to check if they're the same*/
     compare1 = str1;
     compare2 = str2;
 
+    /* We break out of the loop when we reach the end of 
+    one string or both */
     while ((*compare1 != '\0') && (*compare2 != '\0')) {
         if (*compare1 < *compare2) return -1;
         else if (*compare1 > *compare2) return 1;
@@ -105,9 +114,15 @@ int Str_compare(const char str1[], const char str2[]) {
         }
     }
 
+    /* one string could be longer than the other so once
+    the loop is done, we check to see if they both end at 
+    the same time*/
     if ((*compare1 == '\0') && (*compare2 == '\0'))
         return 0;
 
+    /* Since '\0' is smaller than all other characters,
+    we only need to check if the end of the first string is
+    smaller than the second*/
     if (*compare1 == '\0') return -1;
     return 1;
 }
@@ -116,7 +131,7 @@ int Str_compare(const char str1[], const char str2[]) {
 second string. Takes two strings as input and returns a pointer
 that points to the first element of the substring, and NULL otherwise*/
 char *Str_search(char string[], const char substring[]) {
-    char *stringPos;
+    char *stringPos; /* the pointer that we're returning*/
     const char *subTemp;
     char *temp;
     size_t position;
@@ -129,13 +144,18 @@ char *Str_search(char string[], const char substring[]) {
     substringSize = Str_getlength(substring);
     stringSize = Str_getlength(string);
 
+
     if (substringSize == 0) 
         return string;
 
+    /*The substring has to be smaller than the main string that we're
+    checking*/
     if (stringSize < substringSize)
         return NULL;
 
-    for (position = 0; position <= stringSize - substringSize; position++) {
+    /* Checks equality character by character */
+    for (position = 0; position <= stringSize - substringSize; 
+        position++) {
         stringPos = string + position;
         temp = stringPos;
         subTemp = substring;
@@ -145,9 +165,13 @@ char *Str_search(char string[], const char substring[]) {
             subTemp++;
         }
 
+        /* Only when we reach the end of the substring will 
+        we have found it in the main string*/
         if (*subTemp == '\0')
             return stringPos;
         }
     
+    /* Returning NULL means we didn't find the substring in 
+    the main string*/
     return NULL;
 }

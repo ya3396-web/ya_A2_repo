@@ -20,36 +20,48 @@
 static size_t replaceAndWrite(const char *pcLine,  
                               const char *pcFrom, const char *pcTo)
 {
-   /* Insert your code here. */
    char *tempPrint;
    char *tempFind;
    size_t fromSize;
    size_t totalReplacements;
 
-
+   /* returns 0 because fromSize is empty */
    fromSize = Str_getlength(pcFrom);
    if (fromSize == 0) {
       printf("%s", pcLine);
       return 0;
    }
 
+   /* the rest of the code assumes that fromSize is not empty,
+   even if it doesn't exist in pcLine */
    totalReplacements = 0;
    tempPrint = pcLine;
+   
    while (*tempPrint != '\0') {
+      /* first finding the start of the substring in pcLine*/
       tempFind = Str_search(tempPrint, pcFrom);
+
+      /* NULL means the substring isn't in pcLine*/
       if (tempFind == NULL) {
          printf("%s", tempPrint);
-         return totalReplacements;
+         return totalReplacements; /* just returns zero */
       }
 
+      /* not NULL means we've found the substring */
       totalReplacements++;
       while (tempPrint != tempFind) {
+         /* printing character by character until we reach it */
          putchar(*tempPrint);
          tempPrint++;
       }
 
+      /* replacing pcFrom simply means printing pcTo and skipping
+      fromSize ahead in pcLine*/
       printf("%s", pcTo);
       tempPrint += fromSize;
+
+      /* repeats the whole loop starting from the character next to
+      pcFrom */
    }
 
    return totalReplacements;
