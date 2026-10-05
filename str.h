@@ -1,21 +1,25 @@
+/* HEADER FILE for stra.c and strp.c */
+
 #include <stddef.h>
 #include <assert.h>
 #ifndef STR_H
 #define STR_H
 
 /* Returns how many characters are in the given string 
-(excludes '\0'). Takes an array or pointer as input and 
+(excludes '\0'). Takes an array (str1) or pointer as input and 
 returns a size_t value.*/
 size_t Str_getlength(const char str[]);
 
 /* Copies the characters in the second argument into the first.
-Takes two strings as arguments and returns a pointer 
-that points at the first element of the copied string.*/
+Takes two strings as arguments (str1 and str2) with the capacity
+of str1 and returns a pointer that points at the first element 
+of the copied string.*/
 char *Str_copy(char str1[], size_t capacityStr1, const char str2[]);
 
 /* Grafts the characters of the second argument onto the end of
-first argument. Takes two strings as arguments, and returns a 
-pointer to the first element of the final array.*/
+first argument. Takes two strings as arguments (str1 and str2) with the
+capacity of str1 (capacityStr1), and returns a pointer to the first 
+element of the final array.*/
 char *Str_concat(char str1[], size_t capacityStr1, const char str2[]);
 
 /* Lexicographically compares the two given strings. Takes
