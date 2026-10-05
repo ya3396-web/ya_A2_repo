@@ -31,7 +31,6 @@ char *Str_copy(char str1[], const char str2[]) {
 
     const char *current;
     char *copy;
-    size_t sizeStr2;
 
     assert (str1 != NULL);
     assert (str2 != NULL);
@@ -53,8 +52,6 @@ char *Str_copy(char str1[], const char str2[]) {
 first argument. Takes two strings as arguments, and returns a 
 pointer to the first element of the final array.*/
 char *Str_concat(char str1[], const char str2[]) {
-    size_t size1;
-    size_t size2;
     char *current;
     const char *cat;
 
