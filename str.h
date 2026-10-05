@@ -12,8 +12,8 @@ size_t Str_getlength(const char str[]);
 
 /* Copies the characters in the second argument into the first.
 Takes two strings as arguments (str1 and str2) with the capacity
-of str1 and returns a pointer that points at the first element 
-of the copied string.*/
+of str1 (capacityStr1) and returns a pointer that points at 
+the first element of the copied string.*/
 char *Str_copy(char str1[], size_t capacityStr1, const char str2[]);
 
 /* Grafts the characters of the second argument onto the end of
